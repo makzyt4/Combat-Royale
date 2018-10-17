@@ -2,12 +2,17 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include "./3rdparty/picojson/picojson.h"
+#include <chipmunk/chipmunk.h>
 #include <string>
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
+
+    sf::Vector2f v(25, 25);
+
+    std::cout << v.x << std::endl;
     
     while (window.isOpen())
     {
