@@ -9,4 +9,4 @@ add_executable(
     CombatRoyale
     src/main.cpp
 )
-target_link_libraries(CombatRoyale sfml-system sfml-graphics sfml-audio sfml-network)
+target_link_libraries(CombatRoyale libBox2D.a sfml-system sfml-graphics sfml-audio sfml-network)
