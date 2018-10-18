@@ -3,6 +3,7 @@
 #include <SFML/Network.hpp>
 #include <Box2D/Box2D.h>
 #include <string>
+#include <vector>
 #include "../3rdparty/picojson/picojson.h"
 
 class Entity {
@@ -34,12 +35,39 @@ public:
         this->box->CreateFixture(boxFixDef);
     }
 
+    std::vector<b2Vec2> getVertices() {
+        int count = this->boxShape->GetVertexCount();
+        std::vector<b2Vec2> verts;
+
+        
+        for (int i = 0; i < count; i++) {
+            b2Vec2 vert = this->boxShape->GetVertex(i);
+            verts.push_back(this->box->GetWorldPoint(vert));
+        }
+
+        return verts;
+    }
+
     b2Vec2 getPosition() {
         return this->box->GetPosition();
     }
 
     double getAngle() {
         return this->box->GetAngle();
+    }
+    
+    void drawWireframe(sf::RenderWindow* window) {
+        std::vector<b2Vec2> verts = this->getVertices();
+
+        sf::VertexArray lines(sf::LinesStrip, 5);
+
+        for (int i = 0; i < verts.size(); i++) {
+            lines[i].position = sf::Vector2f(verts[i].x, verts[i].y);
+        }
+
+        lines[4].position = sf::Vector2f(verts[0].x, verts[0].y);
+
+        window->draw(lines);
     }
 };
 
@@ -48,11 +76,12 @@ int main() {
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
-    b2World world(b2Vec2(0.0f, 10.0f));
+    b2World world(b2Vec2(0.0f, 1000.0f));
     b2BodyDef groundDef;
-    groundDef.position.Set(0.0f, 10.0f);
+    groundDef.position.Set(200.0f, 200.0f);
 
-    Entity *box = new Entity(&world, b2Vec2(0.0, 4.0), b2Vec2(1.0, 1.0), true); 
+    Entity *box = new Entity(&world, b2Vec2(50.0, 50.0), b2Vec2(10.0, 10.0), true); 
+    Entity *box2 = new Entity(&world, b2Vec2(110.0, 100.0), b2Vec2(50.0, 10.0), false); 
     double timeStep = 1.0 / 60.0;
 
     while (window.isOpen()) {
@@ -68,11 +97,12 @@ int main() {
         b2Vec2 pos = box->getPosition();
         double angle = box->getAngle();
 
-        std::cout << pos.x << ", " << pos.y << std::endl;
-        std::cout << angle << std::endl;
+        //std::cout << pos.x << ", " << pos.y << std::endl;
+        //std::cout << angle << std::endl;
 
         window.clear();
-        window.draw(shape);
+        box->drawWireframe(&window);
+        box2->drawWireframe(&window);
         window.display();
 
         sf::sleep(sf::seconds(1.0/60.0));
