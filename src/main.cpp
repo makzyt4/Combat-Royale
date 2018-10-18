@@ -5,38 +5,10 @@
 #include <vector>
 #include <cmath>
 #include "./physics/Box.hpp"
+#include "./physics/Entity.hpp"
 
 
-class Entity {
-protected:
-    std::vector<CR::Box*> boxes;
-    std::vector<b2RevoluteJoint*> joints;
-
-public:
-    void addBox(CR::Box* box) {
-        this->boxes.push_back(box);
-    }
-
-    void addJoint(b2RevoluteJoint* joint) {
-        this->joints.push_back(joint);
-    }
-
-    std::vector<CR::Box*> getBoxes() {
-        return this->boxes;
-    }
-
-    std::vector<b2RevoluteJoint*> getJoints() {
-        return this->joints;
-    }
-
-    void drawWireframe(sf::RenderWindow* window, const sf::Color& color) {
-        for (int i = 0; i < boxes.size(); i++) {
-            boxes[i]->drawWireframe(window, color);
-        }
-    }
-};
-
-class Ragdoll : public Entity {
+class Ragdoll : public CR::Entity {
 private:
     void addLimbs(b2World* world, const b2Vec2 &position) {
         b2RevoluteJointDef revoluteJointDef;
@@ -156,7 +128,7 @@ int main() {
 
     CR::Box *box2 = new CR::Box(&world, b2Vec2(500.0, 600.0), b2Vec2(50.0, 10.0), false); 
 
-    Entity *entity2 = new Entity();
+    CR::Entity *entity2 = new CR::Entity();
     entity2->addBox(box2);
 
     double timeStep = 1.0 / 60.0;
