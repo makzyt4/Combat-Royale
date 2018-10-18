@@ -1,9 +1,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
-#include "./3rdparty/picojson/picojson.h"
 #include <chipmunk/chipmunk.h>
 #include <string>
+#include "../3rdparty/picojson/picojson.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
