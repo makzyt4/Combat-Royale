@@ -5,6 +5,7 @@
 
 #include "Box.hpp"
 #include "../util/JsonLoader.hpp"
+#include "../util/TextureLoader.hpp"
 
 namespace cr {
 

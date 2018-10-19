@@ -92,10 +92,18 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
         this->addJoint(joint);
     }
 
+    std::string texturePath = v->get("texture_path").get<std::string>();
+
+    sf::Texture *texture = TextureLoader::getInstance().getTexture(texturePath);
+
     picojson::value sprites = v->get("sprites");
 
     for (uint8_t i = 0; i < sprites.get<picojson::array>().size(); i++) {
-        
+        sf::Sprite* sprite = new sf::Sprite();
+
+        sprite->setTexture(*texture);
+
+        this->sprites->push_back(sprite);
     }
 }
 
@@ -105,5 +113,5 @@ cr::Entity::Entity(b2World* world, const b2Vec2 &position) {
 
     this->boxes = new std::vector<cr::Box*>();
     this->joints = new std::vector<b2RevoluteJoint*>();
-    this->sprites= new std::vector<sf::Sprite*>();
+    this->sprites = new std::vector<sf::Sprite*>();
 }

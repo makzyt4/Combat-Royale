@@ -1,5 +1,5 @@
 {
-    "texture_path": "./resources/graphics/human/player_m_rbody.png",
+    "texture_path": "human/player_m_rbody.png",
     "sprites": [
         {
             "body_index": 0,

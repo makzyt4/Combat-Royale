@@ -33,7 +33,7 @@ int main() {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                     cr::Entity* ragdoll = new cr::Entity(&world, b2Vec2(mousePos.x, mousePos.y));
-                    ragdoll->loadFromJsonFile("./res/json/ragdoll/human_ragdoll.json");
+                    ragdoll->loadFromJsonFile("../res/json/ragdoll/human_ragdoll.json");
                     ragdolls.push_back(ragdoll); 
                 }
             }
