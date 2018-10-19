@@ -7,6 +7,7 @@
 namespace cr {
 
     class SpriteInfo {
+
     private:
         uint8_t bodyIndex;
         uint8_t colorType;
@@ -23,6 +24,7 @@ namespace cr {
         void setColorType(const uint8_t& colorType);
         void setOffset(const sf::Vector2i& offset);
         void setSprite(sf::Sprite* sprite);
+
     };
 
 }

@@ -1,33 +1,33 @@
 #include "SpriteInfo.hpp"
 
-uint8_t getBodyIndex() const {
+uint8_t cr::SpriteInfo::getBodyIndex() const {
     return this->bodyIndex;
 }
 
-uint8_t getColorType() const {
+uint8_t cr::SpriteInfo::getColorType() const {
     return this->colorType;
 }
 
-sf::Vector2i getOffset() const {
+sf::Vector2i cr::SpriteInfo::getOffset() const {
     return this->offset;
 }
 
-sf::Sprite *getSprite() const {
+sf::Sprite *cr::SpriteInfo::getSprite() const {
     return this->sprite;
 }
 
-void setBodyIndex(const uint8_t& bodyIndex) {
+void cr::SpriteInfo::setBodyIndex(const uint8_t& bodyIndex) {
     this->bodyIndex = bodyIndex;
 }
 
-void setColorType(const uint8_t& colorType) {
+void cr::SpriteInfo::setColorType(const uint8_t& colorType) {
     this->colorType = colorType;
 }
 
-void setOffset(const sf::Vector2i& offset) {
+void cr::SpriteInfo::setOffset(const sf::Vector2i& offset) {
     this->offset = offset;
 }
 
-void setSprite(sf::Sprite* sprite) {
+void cr::SpriteInfo::setSprite(sf::Sprite* sprite) {
     this->sprite = sprite;
 }

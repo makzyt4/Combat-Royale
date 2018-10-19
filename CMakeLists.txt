@@ -9,6 +9,7 @@ add_executable(
     CombatRoyale
     src/game/Player.cpp
     src/graphics/appearance/PlayerAppearance.cpp
+    src/graphics/util/SpriteInfo.cpp
     src/physics/Box.cpp
     src/physics/Entity.cpp
     src/util/JsonLoader.cpp
