@@ -6,7 +6,7 @@ cr::Entity::Entity(b2World* world, const b2Vec2 &position) {
 
     this->boxes = new std::vector<cr::Box*>();
     this->joints = new std::vector<b2RevoluteJoint*>();
-    this->sprites = new std::vector<sf::Sprite*>();
+    this->spriteInfos = new std::vector<cr::SpriteInfo*>();
 }
 
 void cr::Entity::addBox(cr::Box* box) {
@@ -17,8 +17,8 @@ void cr::Entity::addJoint(b2RevoluteJoint* joint) {
     this->joints->push_back(joint);
 }
 
-void cr::Entity::addSprite(sf::Sprite* sprite) {
-    this->sprites->push_back(sprite);
+void cr::Entity::addSpriteInfo(cr::SpriteInfo* spriteInfo) {
+    this->spriteInfos->push_back(spriteInfo);
 }
 
 std::vector<cr::Box*> *cr::Entity::getBoxes() const {
@@ -29,8 +29,8 @@ std::vector<b2RevoluteJoint*> *cr::Entity::getJoints() const {
     return this->joints;
 }
 
-std::vector<sf::Sprite*> *cr::Entity::getSprites() const {
-    return this->sprites;
+std::vector<cr::SpriteInfo*> *cr::Entity::getSpriteInfos() const {
+    return this->spriteInfos;
 }
 
 void cr::Entity::setTexture(sf::Texture* texture) {
@@ -102,11 +102,17 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
     picojson::value sprites = v->get("sprites");
 
     for (uint8_t i = 0; i < sprites.get<picojson::array>().size(); i++) {
+        picojson::value rectJson = sprites.get(i).get("rect");
+        picojson::value offsetJson = sprites.get(i).get("offset");
+
         sf::Sprite* sprite = new sf::Sprite();
         sprite->setTexture(*texture);
 
         uint8_t bodyIndex = sprites.get(i).get("body_index").get<double>();
-        picojson::value rectJson = sprites.get(i).get("rect");
+        uint8_t colorType = sprites.get(i).get("color_type").get<double>();
+        sf::Vector2i offset = sf::Vector2i(offsetJson.get(0).get<double>(),
+                                    offsetJson.get(1).get<double>());
+                                    
     
         sf::IntRect* rect = new sf::IntRect(rectJson.get(0).get<double>(), 
                                             rectJson.get(1).get<double>(), 
@@ -115,7 +121,9 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
 
         sprite->setTextureRect(*rect);
 
-        this->sprites->push_back(sprite);
+        cr::SpriteInfo* spriteInfo = new SpriteInfo(bodyIndex, colorType, offset, sprite);
+
+        this->spriteInfos->push_back(spriteInfo);
     }
 }
 
@@ -126,7 +134,7 @@ void cr::Entity::drawWireframe(sf::RenderWindow* window, const sf::Color& color)
 }
 
 void cr::Entity::draw(sf::RenderWindow* window) {
-    for (int i = 0; i < this->sprites->size(); i++) {
+    for (int i = 0; i < this->spriteInfos->size(); i++) {
         
     }
 }

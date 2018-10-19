@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Box.hpp"
+#include "../graphics/util/SpriteInfo.hpp"
 #include "../util/JsonLoader.hpp"
 #include "../util/TextureLoader.hpp"
 
@@ -17,7 +18,7 @@ namespace cr {
 
         std::vector<Box*> *boxes;
         std::vector<b2RevoluteJoint*> *joints;
-        std::vector<sf::Sprite*> *sprites;
+        std::vector<SpriteInfo*> *spriteInfos;
 
         sf::Texture* texture;
 
@@ -26,11 +27,11 @@ namespace cr {
 
         void addBox(Box* box);
         void addJoint(b2RevoluteJoint* joint);
-        void addSprite(sf::Sprite* sprite);
+        void addSpriteInfo(SpriteInfo* spriteInfo);
 
         std::vector<Box*> *getBoxes() const;
         std::vector<b2RevoluteJoint*> *getJoints() const;
-        std::vector<sf::Sprite*> *getSprites() const;
+        std::vector<SpriteInfo*> *getSpriteInfos() const;
 
         void setTexture(sf::Texture* texture);
 
