@@ -1,6 +1,6 @@
 #include "Ragdoll.hpp"
 
-void CR::Ragdoll::loadFromFile(const std::string& filename) {
+void CR::Ragdoll::loadFromJSONFile(const std::string& filename) {
     CR::JsonLoader* loader = new CR::JsonLoader();
     picojson::value* v = loader->loadFromFile(filename);
 
@@ -59,7 +59,6 @@ void CR::Ragdoll::loadFromFile(const std::string& filename) {
         this->addJoint(joint);
     }
 }
-
 
 CR::Ragdoll::Ragdoll(b2World* world, const b2Vec2 &position) {
     this->world = world;

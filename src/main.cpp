@@ -4,12 +4,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include "./physics/Box.hpp"
-#include "./physics/Entity.hpp"
 #include "./physics/Ragdoll.hpp"
-#include "../3rdparty/picojson/picojson.h"
-#include <sstream>
-#include <fstream>
 
 
 int main() {
@@ -38,7 +33,7 @@ int main() {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                     CR::Ragdoll* ragdoll = new CR::Ragdoll(&world, b2Vec2(mousePos.x, mousePos.y));
-                    ragdoll->loadFromFile("./resources/json/ragdoll/human_ragdoll.json");
+                    ragdoll->loadFromJSONFile("./resources/json/ragdoll/human_ragdoll.json");
                     ragdolls.push_back(ragdoll); 
                 }
             }

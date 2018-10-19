@@ -16,7 +16,7 @@ namespace CR {
     public:
         Ragdoll(b2World *world, const b2Vec2 &position);
 
-        void loadFromFile(const std::string &filename);
+        void loadFromJSONFile(const std::string &filename);
     };
 
 }
