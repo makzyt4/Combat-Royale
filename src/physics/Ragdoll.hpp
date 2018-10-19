@@ -13,8 +13,6 @@ namespace CR {
         b2World *world;
         b2Vec2 position;
 
-        void addLimbs(b2World *world, const b2Vec2 &position);
-
     public:
         Ragdoll(b2World *world, const b2Vec2 &position);
 
