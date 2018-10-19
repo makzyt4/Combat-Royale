@@ -15,6 +15,9 @@ namespace cr {
         sf::Sprite* sprite;
 
     public:
+        SpriteInfo(const uint8_t &bodyIndex, const uint8_t &colorType, 
+                   const sf::Vector2i &offset, sf::Sprite* sprite);
+
         uint8_t getBodyIndex() const;
         uint8_t getColorType() const;
         sf::Vector2i getOffset() const;

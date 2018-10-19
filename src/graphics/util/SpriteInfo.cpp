@@ -1,5 +1,13 @@
 #include "SpriteInfo.hpp"
 
+cr::SpriteInfo::SpriteInfo(const uint8_t &bodyIndex, const uint8_t &colorType, 
+           const sf::Vector2i &offset, sf::Sprite* sprite) {
+    this->bodyIndex = bodyIndex;
+    this->colorType = colorType;
+    this->offset = offset;
+    this->sprite = sprite;
+}
+
 uint8_t cr::SpriteInfo::getBodyIndex() const {
     return this->bodyIndex;
 }
