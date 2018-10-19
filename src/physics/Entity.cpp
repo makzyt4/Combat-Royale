@@ -1,5 +1,14 @@
 #include "Entity.hpp"
 
+cr::Entity::Entity(b2World* world, const b2Vec2 &position) {
+    this->world = world;
+    this->position = position;
+
+    this->boxes = new std::vector<cr::Box*>();
+    this->joints = new std::vector<b2RevoluteJoint*>();
+    this->sprites = new std::vector<sf::Sprite*>();
+}
+
 void cr::Entity::addBox(cr::Box* box) {
     this->boxes->push_back(box);
 }
@@ -26,12 +35,6 @@ std::vector<sf::Sprite*> *cr::Entity::getSprites() const {
 
 void cr::Entity::setTexture(sf::Texture* texture) {
     this->texture = texture;
-}
-
-void cr::Entity::drawWireframe(sf::RenderWindow* window, const sf::Color& color) const {
-    for (cr::Box* box : *this->boxes) {
-        box->drawWireframe(window, color);
-    }
 }
 
 void cr::Entity::loadFromJsonFile(const std::string& filename) {
@@ -100,18 +103,30 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
 
     for (uint8_t i = 0; i < sprites.get<picojson::array>().size(); i++) {
         sf::Sprite* sprite = new sf::Sprite();
-
         sprite->setTexture(*texture);
+
+        uint8_t bodyIndex = sprites.get(i).get("body_index").get<double>();
+        picojson::value rectJson = sprites.get(i).get("rect");
+    
+        sf::IntRect* rect = new sf::IntRect(rectJson.get(0).get<double>(), 
+                                            rectJson.get(1).get<double>(), 
+                                            rectJson.get(2).get<double>(), 
+                                            rectJson.get(3).get<double>());
+
+        sprite->setTextureRect(*rect);
 
         this->sprites->push_back(sprite);
     }
 }
 
-cr::Entity::Entity(b2World* world, const b2Vec2 &position) {
-    this->world = world;
-    this->position = position;
+void cr::Entity::drawWireframe(sf::RenderWindow* window, const sf::Color& color) const {
+    for (cr::Box* box : *this->boxes) {
+        box->drawWireframe(window, color);
+    }
+}
 
-    this->boxes = new std::vector<cr::Box*>();
-    this->joints = new std::vector<b2RevoluteJoint*>();
-    this->sprites = new std::vector<sf::Sprite*>();
+void cr::Entity::draw(sf::RenderWindow* window) {
+    for (int i = 0; i < this->sprites->size(); i++) {
+        
+    }
 }
