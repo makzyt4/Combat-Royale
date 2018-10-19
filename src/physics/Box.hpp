@@ -6,7 +6,7 @@
 #include <inttypes.h>
 
 
-namespace CR {
+namespace cr {
 
     class Box {
 
@@ -17,13 +17,13 @@ namespace CR {
     public:
         Box(b2World *world, const b2Vec2 &position, const b2Vec2 &size, const bool &is_dynamic);
 
-        b2Body* getBody();
-        b2PolygonShape* getShape();
-        std::vector<b2Vec2> getVertices();
-        b2Vec2 getPosition();
-        float getAngle();
+        b2Body* getBody() const;
+        b2PolygonShape* getShape() const;
+        std::vector<b2Vec2> getVertices() const;
+        b2Vec2 getPosition() const;
+        float getAngle() const ;
         
-        void drawWireframe(sf::RenderWindow* window, const sf::Color& color);
+        void drawWireframe(sf::RenderWindow* window, const sf::Color& color) const;
 
     };
 

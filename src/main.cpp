@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include "./physics/Ragdoll.hpp"
+#include "./physics/Entity.hpp"
 
 
 int main() {
@@ -14,12 +14,12 @@ int main() {
 
     b2World world(b2Vec2(0.0f, 500.0f));
 
-    std::vector<CR::Ragdoll*> ragdolls;
+    std::vector<cr::Entity*> ragdolls;
 
-    CR::Box *box2 = new CR::Box(&world, b2Vec2(500.0, 600.0),
+    cr::Box *box2 = new cr::Box(&world, b2Vec2(500.0, 600.0),
                                 b2Vec2(50.0, 10.0), false); 
 
-    CR::Entity *entity2 = new CR::Entity();
+    cr::Entity *entity2 = new cr::Entity(&world, b2Vec2(50.0, 10.0));
     entity2->addBox(box2);
 
     float timeStep = 1.0 / 60.0;
@@ -32,8 +32,8 @@ int main() {
             } else if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                    CR::Ragdoll* ragdoll = new CR::Ragdoll(&world, b2Vec2(mousePos.x, mousePos.y));
-                    ragdoll->loadFromJSONFile("./resources/json/ragdoll/human_ragdoll.json");
+                    cr::Entity* ragdoll = new cr::Entity(&world, b2Vec2(mousePos.x, mousePos.y));
+                    ragdoll->loadFromJsonFile("./res/json/ragdoll/human_ragdoll.json");
                     ragdolls.push_back(ragdoll); 
                 }
             }
@@ -43,7 +43,7 @@ int main() {
 
         window.clear();
     
-        for (CR::Ragdoll* r : ragdolls) {
+        for (cr::Entity* r : ragdolls) {
             r->drawWireframe(&window, sf::Color::Red);
         }
 

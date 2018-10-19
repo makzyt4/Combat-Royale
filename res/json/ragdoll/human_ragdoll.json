@@ -1,4 +1,13 @@
 {
+    "texture_path": "./resources/graphics/human/player_m_rbody.png",
+    "sprites": [
+        {
+            "body_index": 0,
+            "color_type": 1,
+            "rect": [0, 0, 12, 12],
+            "offset": [0, 0]
+        }
+    ],
     "boxes": [
         {
             "local_position": [0, -2],

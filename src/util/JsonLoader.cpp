@@ -1,7 +1,7 @@
 #include "JsonLoader.hpp"
 
 
-picojson::value* CR::JsonLoader::loadFromFile(const std::string& filename) {
+picojson::value* cr::JsonLoader::loadFromFile(const std::string& filename) {
     std::ifstream t(filename);
     std::stringstream buffer;
 
@@ -12,10 +12,10 @@ picojson::value* CR::JsonLoader::loadFromFile(const std::string& filename) {
                   << filename.c_str() << "\"" << std::endl;
     }
 
-    return this->loadFromString(buffer.str());
+    return cr::JsonLoader::loadFromString(buffer.str());
 }
 
-picojson::value* CR::JsonLoader::loadFromString(const std::string& text) {
+picojson::value* cr::JsonLoader::loadFromString(const std::string& text) {
     auto v = new picojson::value();
 
     std::string err = picojson::parse(*v, text);

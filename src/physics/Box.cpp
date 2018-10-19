@@ -1,7 +1,7 @@
 #include "Box.hpp"
 
 
-CR::Box::Box(b2World *world, const b2Vec2 &position, const b2Vec2 &size, const bool &is_dynamic) { 
+cr::Box::Box(b2World *world, const b2Vec2 &position, const b2Vec2 &size, const bool &is_dynamic) { 
     b2BodyDef *boxDef = new b2BodyDef();
     boxDef->position.Set(position.x, position.y);
     boxDef->type = (is_dynamic) ? b2_dynamicBody : b2_staticBody;
@@ -19,15 +19,15 @@ CR::Box::Box(b2World *world, const b2Vec2 &position, const b2Vec2 &size, const b
     this->body->CreateFixture(boxFixDef);
 }
 
-b2Body* CR::Box::getBody() {
+b2Body* cr::Box::getBody() const {
     return this->body;
 }
 
-b2PolygonShape* CR::Box::getShape() {
+b2PolygonShape* cr::Box::getShape() const {
     return this->shape;
 }
 
-std::vector<b2Vec2> CR::Box::getVertices() {
+std::vector<b2Vec2> cr::Box::getVertices() const {
     const int8_t count = this->shape->GetVertexCount();
     std::vector<b2Vec2> verts;
 
@@ -39,15 +39,15 @@ std::vector<b2Vec2> CR::Box::getVertices() {
     return verts;
 }
 
-b2Vec2 CR::Box::getPosition() {
+b2Vec2 cr::Box::getPosition() const {
     return this->body->GetPosition();
 }
 
-float CR::Box::getAngle() {
+float cr::Box::getAngle() const {
     return this->body->GetAngle();
 }
 
-void CR::Box::drawWireframe(sf::RenderWindow* window, const sf::Color& color) {
+void cr::Box::drawWireframe(sf::RenderWindow* window, const sf::Color& color) const {
     std::vector<b2Vec2> verts = this->getVertices();
 
     sf::VertexArray lines(sf::LinesStrip, 5);

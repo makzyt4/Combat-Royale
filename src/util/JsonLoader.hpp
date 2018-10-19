@@ -6,12 +6,12 @@
 #include <string>
 #include "../../3rdparty/picojson/picojson.h"
 
-namespace CR {
+namespace cr {
 
     class JsonLoader {
     public:
-        picojson::value* loadFromFile(const std::string& filename);
-        picojson::value* loadFromString(const std::string& text);
+        static picojson::value* loadFromFile(const std::string& filename);
+        static picojson::value* loadFromString(const std::string& text);
     };
 
 }
