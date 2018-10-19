@@ -7,7 +7,9 @@
 #include "./physics/Box.hpp"
 #include "./physics/Entity.hpp"
 #include "./physics/Ragdoll.hpp"
-
+#include "../3rdparty/picojson/picojson.h"
+#include <sstream>
+#include <fstream>
 
 
 int main() {
@@ -19,12 +21,13 @@ int main() {
 
     std::vector<CR::Ragdoll*> ragdolls;
 
-    CR::Box *box2 = new CR::Box(&world, b2Vec2(500.0, 600.0), b2Vec2(50.0, 10.0), false); 
+    CR::Box *box2 = new CR::Box(&world, b2Vec2(500.0, 600.0),
+                                b2Vec2(50.0, 10.0), false); 
 
     CR::Entity *entity2 = new CR::Entity();
     entity2->addBox(box2);
 
-    double timeStep = 1.0 / 60.0;
+    float timeStep = 1.0 / 60.0;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -35,6 +38,7 @@ int main() {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                     CR::Ragdoll* ragdoll = new CR::Ragdoll(&world, b2Vec2(mousePos.x, mousePos.y));
+                    ragdoll->loadFromFile("./resources/json/ragdoll/human_ragdoll.json");
                     ragdolls.push_back(ragdoll); 
                 }
             }

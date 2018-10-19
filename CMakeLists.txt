@@ -10,6 +10,7 @@ add_executable(
     src/physics/Box.cpp
     src/physics/Entity.cpp
     src/physics/Ragdoll.cpp
+    src/util/JsonLoader.cpp
     src/main.cpp
 )
 target_link_libraries(CombatRoyale libBox2D.a sfml-system sfml-graphics sfml-audio sfml-network)

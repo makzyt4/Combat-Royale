@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
+#include <inttypes.h>
+
 
 namespace CR {
 
@@ -19,7 +21,7 @@ namespace CR {
         b2PolygonShape* getShape();
         std::vector<b2Vec2> getVertices();
         b2Vec2 getPosition();
-        double getAngle();
+        float getAngle();
         
         void drawWireframe(sf::RenderWindow* window, const sf::Color& color);
 

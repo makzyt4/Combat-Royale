@@ -1,9 +1,7 @@
 #include "Box.hpp"
 
 
-CR::Box::Box(b2World *world, const b2Vec2 &position, const b2Vec2 &size, 
-    const bool &is_dynamic) { 
-
+CR::Box::Box(b2World *world, const b2Vec2 &position, const b2Vec2 &size, const bool &is_dynamic) { 
     b2BodyDef *boxDef = new b2BodyDef();
     boxDef->position.Set(position.x, position.y);
     boxDef->type = (is_dynamic) ? b2_dynamicBody : b2_staticBody;
@@ -30,11 +28,10 @@ b2PolygonShape* CR::Box::getShape() {
 }
 
 std::vector<b2Vec2> CR::Box::getVertices() {
-    int count = this->shape->GetVertexCount();
+    const int8_t count = this->shape->GetVertexCount();
     std::vector<b2Vec2> verts;
 
-    
-    for (int i = 0; i < count; i++) {
+    for (int8_t i = 0; i < count; i++) {
         b2Vec2 vert = this->shape->GetVertex(i);
         verts.push_back(this->body->GetWorldPoint(vert));
     }
@@ -46,7 +43,7 @@ b2Vec2 CR::Box::getPosition() {
     return this->body->GetPosition();
 }
 
-double CR::Box::getAngle() {
+float CR::Box::getAngle() {
     return this->body->GetAngle();
 }
 
@@ -55,7 +52,7 @@ void CR::Box::drawWireframe(sf::RenderWindow* window, const sf::Color& color) {
 
     sf::VertexArray lines(sf::LinesStrip, 5);
 
-    for (int i = 0; i < verts.size() + 1; i++) {
+    for (int8_t i = 0; i < verts.size() + 1; i++) {
         lines[i].position = sf::Vector2f(verts[i % verts.size()].x, verts[i % verts.size()].y);
         lines[i].color = color;
     }
