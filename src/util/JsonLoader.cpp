@@ -1,6 +1,6 @@
 #include "JsonLoader.hpp"
 
-cr::JsonLoader& cr::JsonLoader::getInstance() {
+cr::JsonLoader &cr::JsonLoader::getInstance() {
     static cr::JsonLoader instance;
 
     return instance;

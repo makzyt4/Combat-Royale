@@ -16,7 +16,7 @@ namespace cr {
         std::map<std::string, picojson::value*> jsonMap;
 
     public:
-        static JsonLoader& getInstance();
+        static JsonLoader &getInstance();
 
         picojson::value* loadFromFile(const std::string& filename);
         picojson::value* loadFromString(const std::string& text);

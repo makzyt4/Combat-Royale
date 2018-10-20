@@ -14,7 +14,7 @@ namespace cr {
 
     public:
 
-        static TextureLoader& getInstance();
+        static TextureLoader &getInstance();
 
         sf::Texture* loadFromFile(const std::string &path);
     };
