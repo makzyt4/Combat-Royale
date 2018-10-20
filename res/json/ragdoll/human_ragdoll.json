@@ -2,10 +2,25 @@
     "texture_path": "human/player_m_rbody.png",
     "sprites": [
         {
+            "body_index": 0,
+            "color_type": 1,
+            "rect": [17, 2, 30, 23],
+            "offset": [0, 0],
+            "layer": "uppertorso_clothes"
+        },
+        {
+            "body_index": 0,
+            "color_type": 3,
+            "rect": [26, 25, 12, 5],
+            "offset": [0, 14],
+            "layer": "lowertorso_trousers"
+        },
+        {
             "body_index": 1,
             "color_type": 1,
             "rect": [0, 0, 12, 12],
-            "offset": [0, 0]
+            "offset": [0, 0],
+            "layer": "head_skin"
         }
     ],
     "boxes": [

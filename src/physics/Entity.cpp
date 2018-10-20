@@ -141,14 +141,12 @@ void cr::Entity::draw(sf::RenderWindow* window) {
         b2Body *body = this->boxes->at(bodyIndex)->getBody();
         b2Vec2 position = body->GetPosition();
         float angle = body->GetAngle() * 180.0 / M_PI;
+        sf::Vector2i offset = this->spriteInfos->at(i)->getOffset();
 
         sf::FloatRect rect = sprite->getGlobalBounds();
 
         sprite->setOrigin(rect.width / 2, rect.height / 2);
-        sprite->setPosition(position.x, position.y);
-
-        //position.x -= rect.width / 2;
-        //position.y -= rect.height / 2;
+        sprite->setPosition(position.x + offset.x, position.y + offset.y);
 
         sf::Transform t;
         t.rotate(angle, position.x, position.y);
