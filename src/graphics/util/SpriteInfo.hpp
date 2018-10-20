@@ -10,23 +10,27 @@ namespace cr {
 
     private:
         uint8_t bodyIndex;
-        uint8_t colorType;
+        std::string colorType;
         sf::Vector2i offset;
         sf::Sprite* sprite;
+        std::string layer;
 
     public:
-        SpriteInfo(const uint8_t &bodyIndex, const uint8_t &colorType, 
-                   const sf::Vector2i &offset, sf::Sprite* sprite);
+        SpriteInfo(const uint8_t &bodyIndex, const std::string &colorType, 
+                   const sf::Vector2i &offset, sf::Sprite* sprite,
+                   const std::string &layer);
 
         uint8_t getBodyIndex() const;
-        uint8_t getColorType() const;
+        std::string getColorType() const;
         sf::Vector2i getOffset() const;
         sf::Sprite *getSprite() const;
+        std::string getLayer() const;
 
         void setBodyIndex(const uint8_t& bodyIndex);
-        void setColorType(const uint8_t& colorType);
+        void setColorType(const std::string& colorType);
         void setOffset(const sf::Vector2i& offset);
         void setSprite(sf::Sprite* sprite);
+        void setLayer(const std::string& layer);
 
     };
 

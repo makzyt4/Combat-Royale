@@ -109,7 +109,8 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
         sprite->setTexture(*texture);
 
         uint8_t bodyIndex = sprites.get(i).get("body_index").get<double>();
-        uint8_t colorType = sprites.get(i).get("color_type").get<double>();
+        std::string colorType = sprites.get(i).get("color_type").get<std::string>();
+        std::string layer = sprites.get(i).get("layer").get<std::string>();
         sf::Vector2i offset = sf::Vector2i(offsetJson.get(0).get<double>(),
                                     offsetJson.get(1).get<double>());
                                     
@@ -121,7 +122,7 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
 
         sprite->setTextureRect(*rect);
 
-        cr::SpriteInfo* spriteInfo = new SpriteInfo(bodyIndex, colorType, offset, sprite);
+        cr::SpriteInfo* spriteInfo = new SpriteInfo(bodyIndex, colorType, offset, sprite, layer);
 
         this->spriteInfos->push_back(spriteInfo);
     }
