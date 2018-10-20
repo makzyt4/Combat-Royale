@@ -2,7 +2,7 @@
     "texture_path": "human/player_m_rbody.png",
     "sprites": [
         {
-            "body_index": 0,
+            "body_index": 1,
             "color_type": 1,
             "rect": [0, 0, 12, 12],
             "offset": [0, 0]

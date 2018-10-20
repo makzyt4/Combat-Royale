@@ -45,6 +45,7 @@ int main() {
     
         for (cr::Entity* r : ragdolls) {
             r->drawWireframe(&window, sf::Color::Red);
+            r->draw(&window);
         }
 
         entity2->drawWireframe(&window, sf::Color::Green);

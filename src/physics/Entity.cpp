@@ -135,6 +135,24 @@ void cr::Entity::drawWireframe(sf::RenderWindow* window, const sf::Color& color)
 
 void cr::Entity::draw(sf::RenderWindow* window) {
     for (int i = 0; i < this->spriteInfos->size(); i++) {
-        
+        uint8_t bodyIndex = this->spriteInfos->at(i)->getBodyIndex();
+        sf::Sprite* sprite = this->spriteInfos->at(i)->getSprite();
+
+        b2Body *body = this->boxes->at(bodyIndex)->getBody();
+        b2Vec2 position = body->GetPosition();
+        float angle = body->GetAngle() * 180.0 / M_PI;
+
+        sf::FloatRect rect = sprite->getGlobalBounds();
+
+        sprite->setOrigin(rect.width / 2, rect.height / 2);
+        sprite->setPosition(position.x, position.y);
+
+        //position.x -= rect.width / 2;
+        //position.y -= rect.height / 2;
+
+        sf::Transform t;
+        t.rotate(angle, position.x, position.y);
+
+        window->draw(*sprite, t);
     }
 }
