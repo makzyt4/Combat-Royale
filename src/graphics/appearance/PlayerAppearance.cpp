@@ -1,27 +1,39 @@
 #include "PlayerAppearance.hpp"
 
-sf::Color cr::PlayerAppearance::getHairColor() {
+sf::Color cr::PlayerAppearance::getHairColor() const {
     return this->hairColor;
 }
 
-sf::Color cr::PlayerAppearance::getSkinColor() {
+sf::Color cr::PlayerAppearance::getSkinColor() const {
     return this->skinColor;
 }
 
-sf::Color cr::PlayerAppearance::getShirtColor() {
+sf::Color cr::PlayerAppearance::getShirtColor() const {
     return this->shirtColor;
 }
 
-sf::Color cr::PlayerAppearance::getGlovesColor() {
+sf::Color cr::PlayerAppearance::getGlovesColor() const {
     return this->glovesColor;
 }
 
-sf::Color cr::PlayerAppearance::getShoesColor() {
+sf::Color cr::PlayerAppearance::getShoesColor() const {
     return this->shoesColor;
 }
 
-sf::Color cr::PlayerAppearance::getHatColor() {
+sf::Color cr::PlayerAppearance::getHatColor() const {
     return this->hatColor;
+}
+
+cr::HelmetType cr::PlayerAppearance::getHelmetType() const {
+    return this->helmetType;
+}
+
+cr::HairType cr::PlayerAppearance::getHairType() const {
+    return this->hairType;
+}
+
+bool cr::PlayerAppearance::hasSunglasses() const {
+    return this->sunglasses;
 }
 
 void cr::PlayerAppearance::setHairColor(const sf::Color &hairColor) {
@@ -46,4 +58,16 @@ void cr::PlayerAppearance::setShoesColor(const sf::Color &shoesColor) {
 
 void cr::PlayerAppearance::setHatColor(const sf::Color &hatColor) {
     this->hatColor = hatColor;
+}
+
+void setHelmetType(const HelmetType& helmetType) {
+    this->helmetType = helmetType;
+}
+
+void setHairType(const HairType& hairType) {
+    this->hairType = hairType;
+}
+
+void cr::PlayerAppearance::setSunglasses(const bool &sunglasses) {
+    this->sunglasses = sunglasses;
 }
