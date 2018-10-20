@@ -26,6 +26,6 @@ namespace cr {
 
     };
 
-};
+}
 
 #endif
