@@ -7,6 +7,7 @@
 #include "../graphics/util/SpriteInfo.hpp"
 #include "../util/JsonLoader.hpp"
 #include "../util/TextureLoader.hpp"
+#include "../graphics/appearance/PlayerAppearance.hpp"
 
 namespace cr {
 
@@ -37,8 +38,8 @@ namespace cr {
 
         void loadFromJsonFile(const std::string &filename);
         void drawWireframe(sf::RenderWindow* window, const sf::Color& color) const;
-        void draw(sf::RenderWindow* window);
-
+        void draw(sf::RenderWindow* window) const;
+        void draw(sf::RenderWindow* window, PlayerAppearance* appearance) const;
     };
 
 }

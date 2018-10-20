@@ -1,6 +1,13 @@
 #include "TextureLoader.hpp"
 
-sf::Texture* cr::TextureLoader::getTexture(const std::string &path) {
+
+cr::TextureLoader &cr::TextureLoader::getInstance() {
+    static cr::TextureLoader instance;
+
+    return instance;
+}
+
+sf::Texture* cr::TextureLoader::loadFromFile(const std::string &path) {
     std::string fullPath = "../res/textures/" + path;
 
     std::map<std::string, sf::Texture*>::iterator it = this->textureMap.find(fullPath);

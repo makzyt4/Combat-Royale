@@ -1,12 +1,15 @@
 #include "SpriteInfo.hpp"
 
-cr::SpriteInfo::SpriteInfo(const uint8_t &bodyIndex, const std::string &colorType, 
-           const sf::Vector2i &offset, sf::Sprite* sprite, const std::string &layer) {
+cr::SpriteInfo::SpriteInfo(const uint8_t &bodyIndex, 
+                           const std::string &colorType, 
+                           const sf::Vector2i &offset,
+                           const std::string &layers,
+                           sf::Sprite* sprite) {
     this->bodyIndex = bodyIndex;
     this->colorType = colorType;
     this->offset = offset;
+    this->layers = layers;
     this->sprite = sprite;
-    this->layer = layer;
 }
 
 uint8_t cr::SpriteInfo::getBodyIndex() const {
@@ -21,12 +24,12 @@ sf::Vector2i cr::SpriteInfo::getOffset() const {
     return this->offset;
 }
 
-sf::Sprite *cr::SpriteInfo::getSprite() const {
-    return this->sprite;
+std::string cr::SpriteInfo::getLayers() const {
+    return this->layers;
 }
 
-std::string cr::SpriteInfo::getLayer() const {
-    return this->layer;
+sf::Sprite *cr::SpriteInfo::getSprite() const {
+    return this->sprite;
 }
 
 void cr::SpriteInfo::setBodyIndex(const uint8_t& bodyIndex) {
@@ -41,10 +44,10 @@ void cr::SpriteInfo::setOffset(const sf::Vector2i& offset) {
     this->offset = offset;
 }
 
-void cr::SpriteInfo::setSprite(sf::Sprite* sprite) {
-    this->sprite = sprite;
+void cr::SpriteInfo::setLayers(const std::string& layer) {
+    this->layers = layers;
 }
 
-void cr::SpriteInfo::setLayer(const std::string& layer) {
-    this->layer = layer;
+void cr::SpriteInfo::setSprite(sf::Sprite* sprite) {
+    this->sprite = sprite;
 }

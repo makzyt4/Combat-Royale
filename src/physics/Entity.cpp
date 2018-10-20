@@ -38,7 +38,7 @@ void cr::Entity::setTexture(sf::Texture* texture) {
 }
 
 void cr::Entity::loadFromJsonFile(const std::string& filename) {
-    picojson::value* v = cr::JsonLoader::loadFromFile(filename);
+    picojson::value* v = cr::JsonLoader::getInstance().loadFromFile(filename);
 
     b2RevoluteJointDef revoluteJointDef;
     revoluteJointDef.collideConnected = false;
@@ -97,7 +97,7 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
 
     std::string texturePath = v->get("texture_path").get<std::string>();
 
-    sf::Texture *texture = TextureLoader::getInstance().getTexture(texturePath);
+    sf::Texture *texture = TextureLoader::getInstance().loadFromFile(texturePath);
 
     picojson::value sprites = v->get("sprites");
 
@@ -110,9 +110,9 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
 
         uint8_t bodyIndex = sprites.get(i).get("body_index").get<double>();
         std::string colorType = sprites.get(i).get("color_type").get<std::string>();
-        std::string layer = sprites.get(i).get("layer").get<std::string>();
+        std::string layers = sprites.get(i).get("layers").get<std::string>();
         sf::Vector2i offset = sf::Vector2i(offsetJson.get(0).get<double>(),
-                                    offsetJson.get(1).get<double>());
+                                           offsetJson.get(1).get<double>());
                                     
     
         sf::IntRect* rect = new sf::IntRect(rectJson.get(0).get<double>(), 
@@ -122,7 +122,7 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
 
         sprite->setTextureRect(*rect);
 
-        cr::SpriteInfo* spriteInfo = new SpriteInfo(bodyIndex, colorType, offset, sprite, layer);
+        cr::SpriteInfo* spriteInfo = new SpriteInfo(bodyIndex, colorType, offset, layers, sprite);
 
         this->spriteInfos->push_back(spriteInfo);
     }
@@ -134,15 +134,23 @@ void cr::Entity::drawWireframe(sf::RenderWindow* window, const sf::Color& color)
     }
 }
 
-void cr::Entity::draw(sf::RenderWindow* window) {
+void cr::Entity::draw(sf::RenderWindow* window) const {
+    this->draw(window, new PlayerAppearance());
+}
+
+void cr::Entity::draw(sf::RenderWindow* window, cr::PlayerAppearance* appearance) const {
     for (int i = 0; i < this->spriteInfos->size(); i++) {
-        uint8_t bodyIndex = this->spriteInfos->at(i)->getBodyIndex();
-        sf::Sprite* sprite = this->spriteInfos->at(i)->getSprite();
+        cr::SpriteInfo* si = this->spriteInfos->at(i);
+
+        uint8_t bodyIndex = si->getBodyIndex();
+        std::string colorType = si->getColorType(); 
+        sf::Vector2i offset = si->getOffset();
+        std::string layers = si->getLayers();
+        sf::Sprite* sprite = si->getSprite();
 
         b2Body *body = this->boxes->at(bodyIndex)->getBody();
         b2Vec2 position = body->GetPosition();
         float angle = body->GetAngle() * 180.0 / M_PI;
-        sf::Vector2i offset = this->spriteInfos->at(i)->getOffset();
 
         sf::FloatRect rect = sprite->getGlobalBounds();
 
