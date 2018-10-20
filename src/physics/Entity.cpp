@@ -108,18 +108,22 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
     for (uint8_t i = 0; i < sprites.get<picojson::array>().size(); i++) {
         picojson::value rectJson = sprites.get(i).get("rect");
         picojson::value offsetJson = sprites.get(i).get("offset");
+        picojson::value layersJson = sprites.get(i).get("layers");
 
         uint8_t textureIndex = sprites.get(i).get("texture_index").get<double>();
         uint8_t bodyIndex = sprites.get(i).get("body_index").get<double>();
         std::string colorType = sprites.get(i).get("color_type").get<std::string>();
-        std::string layers = sprites.get(i).get("layers").get<std::string>();
         sf::Vector2i offset = sf::Vector2i(offsetJson.get(0).get<double>(),
                                            offsetJson.get(1).get<double>());
+        std::vector<std::string> layers;
+
+        for (uint8_t i = 0; i < layersJson.get<picojson::array>().size(); i++) {
+            layers.push_back(layersJson.get(i).get<std::string>());
+        }
 
         sf::Sprite* sprite = new sf::Sprite();
         sprite->setTexture(*textures.at(textureIndex));
-                                    
-    
+
         sf::IntRect* rect = new sf::IntRect(rectJson.get(0).get<double>(), 
                                             rectJson.get(1).get<double>(), 
                                             rectJson.get(2).get<double>(), 
@@ -150,10 +154,11 @@ void cr::Entity::draw(sf::RenderWindow* window, cr::PlayerAppearance* appearance
         uint8_t bodyIndex = si->getBodyIndex();
         std::string colorType = si->getColorType(); 
         sf::Vector2i offset = si->getOffset();
-        std::string layers = si->getLayers();
+        std::vector<std::string> layers = si->getLayers();
         sf::Sprite* sprite = si->getSprite();
 
         b2Body *body = this->boxes->at(bodyIndex)->getBody();
+
         b2Vec2 position = body->GetPosition();
         float angle = body->GetAngle() * 180.0 / M_PI;
 

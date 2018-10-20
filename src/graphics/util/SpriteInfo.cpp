@@ -3,7 +3,7 @@
 cr::SpriteInfo::SpriteInfo(const uint8_t &bodyIndex, 
                            const std::string &colorType, 
                            const sf::Vector2i &offset,
-                           const std::string &layers,
+                           const std::vector<std::string> &layers,
                            sf::Sprite* sprite) {
     this->bodyIndex = bodyIndex;
     this->colorType = colorType;
@@ -24,7 +24,7 @@ sf::Vector2i cr::SpriteInfo::getOffset() const {
     return this->offset;
 }
 
-std::string cr::SpriteInfo::getLayers() const {
+std::vector<std::string> cr::SpriteInfo::getLayers() const {
     return this->layers;
 }
 
@@ -44,7 +44,7 @@ void cr::SpriteInfo::setOffset(const sf::Vector2i& offset) {
     this->offset = offset;
 }
 
-void cr::SpriteInfo::setLayers(const std::string& layer) {
+void cr::SpriteInfo::setLayers(const std::vector<std::string>& layer) {
     this->layers = layers;
 }
 
