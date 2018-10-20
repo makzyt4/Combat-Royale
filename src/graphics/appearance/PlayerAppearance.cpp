@@ -60,11 +60,11 @@ void cr::PlayerAppearance::setHatColor(const sf::Color &hatColor) {
     this->hatColor = hatColor;
 }
 
-void setHelmetType(const HelmetType& helmetType) {
+void cr::PlayerAppearance::setHelmetType(const cr::HelmetType& helmetType) {
     this->helmetType = helmetType;
 }
 
-void setHairType(const HairType& hairType) {
+void cr::PlayerAppearance::setHairType(const cr::HairType& hairType) {
     this->hairType = hairType;
 }
 

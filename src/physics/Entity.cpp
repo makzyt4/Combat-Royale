@@ -95,9 +95,13 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
         this->addJoint(joint);
     }
 
-    std::string texturePath = v->get("texture_path").get<std::string>();
+    picojson::value texturePaths = v->get("texture_paths");
 
-    sf::Texture *texture = TextureLoader::getInstance().loadFromFile(texturePath);
+    std::vector<sf::Texture*> textures;
+
+    for (uint8_t i = 0; i < texturePaths.get<picojson::array>().size(); i++) {
+        textures.push_back(TextureLoader::getInstance().loadFromFile(texturePaths.get(i).get<std::string>()));
+    }
 
     picojson::value sprites = v->get("sprites");
 
@@ -105,14 +109,15 @@ void cr::Entity::loadFromJsonFile(const std::string& filename) {
         picojson::value rectJson = sprites.get(i).get("rect");
         picojson::value offsetJson = sprites.get(i).get("offset");
 
-        sf::Sprite* sprite = new sf::Sprite();
-        sprite->setTexture(*texture);
-
+        uint8_t textureIndex = sprites.get(i).get("texture_index").get<double>();
         uint8_t bodyIndex = sprites.get(i).get("body_index").get<double>();
         std::string colorType = sprites.get(i).get("color_type").get<std::string>();
         std::string layers = sprites.get(i).get("layers").get<std::string>();
         sf::Vector2i offset = sf::Vector2i(offsetJson.get(0).get<double>(),
                                            offsetJson.get(1).get<double>());
+
+        sf::Sprite* sprite = new sf::Sprite();
+        sprite->setTexture(*textures.at(textureIndex));
                                     
     
         sf::IntRect* rect = new sf::IntRect(rectJson.get(0).get<double>(), 

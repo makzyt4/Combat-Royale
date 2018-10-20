@@ -1,7 +1,12 @@
 {
-    "texture_path": "human/player_m_rbody.png",
+    "texture_paths": [
+        "human/player_m_rbody.png",
+        "human/player_m_hair.png",
+        "human/player_m_hat.png"
+    ],
     "sprites": [
         {
+            "texture_index": 0,
             "body_index": 0,
             "color_type": "shirt",
             "rect": [17, 2, 30, 23],
@@ -9,6 +14,7 @@
             "layers": "shirt,tshirt"
         },
         {
+            "texture_index": 0,
             "body_index": 0,
             "color_type": "trousers",
             "rect": [26, 25, 12, 5],
@@ -16,6 +22,7 @@
             "layers": "trousers"
         },
         {
+            "texture_index": 0,
             "body_index": 1,
             "color_type": "skin",
             "rect": [0, 0, 12, 12],
@@ -23,6 +30,7 @@
             "layers": "head"
         },
         {
+            "texture_index": 0,
             "body_index": 2,
             "color_type": "shirt",
             "rect": [83, 89, 13, 7],
@@ -30,6 +38,7 @@
             "layers": "shirt"
         },
         {
+            "texture_index": 0,
             "body_index": 2,
             "color_type": "skin",
             "rect": [83, 89, 13, 7],
@@ -37,6 +46,7 @@
             "layers": "noshirt,sleeveless"
         },
         {
+            "texture_index": 0,
             "body_index": 2,
             "color_type": "shirt",
             "rect": [83, 105, 13, 7],
@@ -44,6 +54,7 @@
             "layers": "tshirt"
         },
         {
+            "texture_index": 0,
             "body_index": 2,
             "color_type": "skin",
             "rect": [83, 121, 13, 7],
@@ -51,6 +62,7 @@
             "layers": "tshirt"
         },
         {
+            "texture_index": 0,
             "body_index": 3,
             "color_type": "trousers",
             "rect": [104, 0, 8, 18],
@@ -58,6 +70,7 @@
             "layers": "trousers"
         },
         {
+            "texture_index": 0,
             "body_index": 3,
             "color_type": "skin",
             "rect": [104, 32, 8, 18],
@@ -65,6 +78,7 @@
             "layers": "notrousers"
         },
         {
+            "texture_index": 0,
             "body_index": 3,
             "color_type": "trousers",
             "rect": [120, 32, 8, 18],
@@ -72,6 +86,7 @@
             "layers": "notrousers"
         },
         {
+            "texture_index": 0,
             "body_index": 4,
             "color_type": "shirt",
             "rect": [48, 2, 13, 7],
@@ -79,6 +94,7 @@
             "layers": "shirt"
         },
         {
+            "texture_index": 0,
             "body_index": 4,
             "color_type": "skin",
             "rect": [48, 2, 13, 7],
@@ -86,6 +102,7 @@
             "layers": "noshirt,sleeveless"
         },
         {
+            "texture_index": 0,
             "body_index": 4,
             "color_type": "shirt",
             "rect": [48, 18, 13, 7],
@@ -93,6 +110,7 @@
             "layers": "tshirt"
         },
         {
+            "texture_index": 0,
             "body_index": 4,
             "color_type": "skin",
             "rect": [48, 34, 13, 7],
@@ -100,6 +118,7 @@
             "layers": "tshirt"
         },
         {
+            "texture_index": 0,
             "body_index": 5,
             "color_type": "trousers",
             "rect": [144, 0, 8, 18],
@@ -107,6 +126,7 @@
             "layers": "trousers"
         },
         {
+            "texture_index": 0,
             "body_index": 5,
             "color_type": "skin",
             "rect": [144, 32, 8, 18],
@@ -114,6 +134,7 @@
             "layers": "notrousers"
         },
         {
+            "texture_index": 0,
             "body_index": 5,
             "color_type": "trousers",
             "rect": [128, 32, 8, 18],
@@ -121,6 +142,7 @@
             "layers": "notrousers"
         },
         {
+            "texture_index": 0,
             "body_index": 6,
             "color_type": "trousers",
             "rect": [100, 18, 10, 14],
@@ -128,6 +150,7 @@
             "layers": "trousers"
         },
         {
+            "texture_index": 0,
             "body_index": 6,
             "color_type": "skin",
             "rect": [100, 18, 10, 14],
@@ -135,6 +158,7 @@
             "layers": "notrousers,shorts"
         },
         {
+            "texture_index": 0,
             "body_index": 6,
             "color_type": "shoes",
             "rect": [116, 50, 10, 14],
@@ -142,6 +166,7 @@
             "layers": "shoes"
         },
         {
+            "texture_index": 0,
             "body_index": 7,
             "color_type": "trousers",
             "rect": [146, 18, 10, 14],
@@ -149,6 +174,7 @@
             "layers": "trousers"
         },
         {
+            "texture_index": 0,
             "body_index": 7,
             "color_type": "skin",
             "rect": [146, 18, 10, 14],
@@ -156,6 +182,7 @@
             "layers": "notrousers,shorts"
         },
         {
+            "texture_index": 0,
             "body_index": 7,
             "color_type": "shoes",
             "rect": [130, 50, 10, 14],
@@ -163,6 +190,7 @@
             "layers": "shoes"
         },
         {
+            "texture_index": 0,
             "body_index": 8,
             "color_type": "shirt",
             "rect": [60, 87, 20, 9],
@@ -170,6 +198,7 @@
             "layers": "shirt"
         },
         {
+            "texture_index": 0,
             "body_index": 8,
             "color_type": "skin",
             "rect": [60, 87, 20, 9],
@@ -177,6 +206,7 @@
             "layers": "noshirt,sleeveless,tshirt"
         },
         {
+            "texture_index": 0,
             "body_index": 8,
             "color_type": "gloves",
             "rect": [60, 119, 20, 9],
@@ -184,6 +214,7 @@
             "layers": "gloves"
         },
         {
+            "texture_index": 0,
             "body_index": 8,
             "color_type": "skin",
             "rect": [60, 119, 20, 9],
@@ -191,6 +222,7 @@
             "layers": "shirt"
         },
         {
+            "texture_index": 0,
             "body_index": 9,
             "color_type": "shirt",
             "rect": [64, 0, 20, 9],
@@ -198,6 +230,7 @@
             "layers": "shirt"
         },
         {
+            "texture_index": 0,
             "body_index": 9,
             "color_type": "skin",
             "rect": [64, 0, 20, 9],
@@ -205,6 +238,7 @@
             "layers": "noshirt,sleeveless,tshirt"
         },
         {
+            "texture_index": 0,
             "body_index": 9,
             "color_type": "gloves",
             "rect": [64, 32, 20, 9],
@@ -212,6 +246,7 @@
             "layers": "gloves"
         },
         {
+            "texture_index": 0,
             "body_index": 9,
             "color_type": "skin",
             "rect": [64, 32, 20, 9],
